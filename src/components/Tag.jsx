@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Spinner from "./Spinner";
 import useGif from '../hooks/useGif';
 
 const Tag = () => {
 const [search,setSearch] = useState('');
-  const { gif, loading, fetchData } = useGif();
+  const { gif, loading, fetchData } = useGif(search);
 
   return (
     <div className="w-1/2 bg-blue-500 rounded-lg border border-black flex flex-col items-center gap-y-5 mt-[15px]">
@@ -19,7 +19,7 @@ const [search,setSearch] = useState('');
 
       <input type='text' className='w-10/12 text-lg py-2 rounded-lg mb-[3px] text-center' onChange={(event) => setSearch(event.target.value)} value={search}></input>
 
-      <button onClick={() => { fetchData() }} className="w-10/12 bg-white opacity-90 text-lg py-2 rounded-lg mb-[20px]">Generate</button>
+      <button onClick={() => { fetchData(search) }} className="w-10/12 bg-white opacity-90 text-lg py-2 rounded-lg mb-[20px]">Generate</button>
     </div>
   );
 }
